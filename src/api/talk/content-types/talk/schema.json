@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "talks",
+  "info": {
+    "singularName": "talk",
+    "pluralName": "talks",
+    "displayName": "Talk",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "occur_date": {
+      "type": "datetime"
+    },
+    "room_description": {
+      "type": "string"
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "talks"
+    },
+    "highlight": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}
