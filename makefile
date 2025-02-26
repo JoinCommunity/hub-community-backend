@@ -9,5 +9,5 @@ refresh:
 update:
 	git pull
 	yarn
-	yarn build --no-optimization
+	yarn build
 	pm2 restart hub-community-manager
