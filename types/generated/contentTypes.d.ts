@@ -459,6 +459,7 @@ export interface ApiSpeakerSpeaker extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    talks: Schema.Attribute.Relation<'manyToMany', 'api::talk.talk'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -489,6 +490,7 @@ export interface ApiTalkTalk extends Struct.CollectionTypeSchema {
     occur_date: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
     room_description: Schema.Attribute.String;
+    speakers: Schema.Attribute.Relation<'manyToMany', 'api::speaker.speaker'>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

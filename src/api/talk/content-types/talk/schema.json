@@ -33,6 +33,12 @@
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "speakers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::speaker.speaker",
+      "inversedBy": "talks"
     }
   }
 }

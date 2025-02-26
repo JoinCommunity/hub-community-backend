@@ -31,6 +31,12 @@
     "highlight": {
       "type": "boolean",
       "default": false
+    },
+    "talks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::talk.talk",
+      "mappedBy": "speakers"
     }
   }
 }
