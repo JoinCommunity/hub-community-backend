@@ -4,7 +4,8 @@
   "info": {
     "singularName": "location",
     "pluralName": "locations",
-    "displayName": "Location"
+    "displayName": "Location",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -27,6 +28,21 @@
       "relation": "oneToMany",
       "target": "api::event.event",
       "mappedBy": "location"
+    },
+    "full_address": {
+      "type": "text"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "communities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::community.community",
+      "mappedBy": "locations"
     }
   }
 }

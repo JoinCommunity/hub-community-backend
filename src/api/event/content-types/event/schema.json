@@ -44,6 +44,18 @@
       "relation": "manyToOne",
       "target": "api::location.location",
       "inversedBy": "events"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "events"
+    },
+    "communities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::community.community",
+      "mappedBy": "events"
     }
   }
 }
