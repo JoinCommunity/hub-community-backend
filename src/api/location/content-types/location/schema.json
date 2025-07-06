@@ -38,11 +38,11 @@
     "region": {
       "type": "string"
     },
-    "communities": {
+    "community": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToOne",
       "target": "api::community.community",
-      "mappedBy": "locations"
+      "mappedBy": "location"
     }
   }
 }

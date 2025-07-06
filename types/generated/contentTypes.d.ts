@@ -398,10 +398,7 @@ export interface ApiCommunityCommunity extends Struct.CollectionTypeSchema {
       'api::community.community'
     > &
       Schema.Attribute.Private;
-    locations: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::location.location'
-    >;
+    location: Schema.Attribute.Relation<'oneToOne', 'api::location.location'>;
     members_quantity: Schema.Attribute.BigInteger;
     organizers: Schema.Attribute.Relation<
       'manyToMany',
@@ -509,8 +506,8 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   };
   attributes: {
     city: Schema.Attribute.String;
-    communities: Schema.Attribute.Relation<
-      'manyToMany',
+    community: Schema.Attribute.Relation<
+      'oneToOne',
       'api::community.community'
     >;
     createdAt: Schema.Attribute.DateTime;

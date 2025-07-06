@@ -44,11 +44,11 @@
       "target": "api::tag.tag",
       "inversedBy": "communities"
     },
-    "locations": {
+    "location": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToOne",
       "target": "api::location.location",
-      "inversedBy": "communities"
+      "inversedBy": "community"
     },
     "founded_in": {
       "type": "date"
