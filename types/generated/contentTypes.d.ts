@@ -407,7 +407,7 @@ export interface ApiCommunityCommunity extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     short_description: Schema.Attribute.Text;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
-    title: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
