@@ -37,6 +37,21 @@
       "relation": "manyToMany",
       "target": "api::talk.talk",
       "mappedBy": "speakers"
+    },
+    "socials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::link.link"
+    },
+    "email": {
+      "type": "string",
+      "required": false
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "speaker"
     }
   }
 }
