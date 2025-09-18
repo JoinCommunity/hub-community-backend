@@ -660,6 +660,46 @@ export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRateRate extends Struct.CollectionTypeSchema {
+  collectionName: 'rates';
+  info: {
+    description: '';
+    displayName: 'Rates';
+    pluralName: 'rates';
+    singularName: 'rate';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'oneToOne', 'api::event.event'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::rate.rate'> &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Blocks;
+    publishedAt: Schema.Attribute.DateTime;
+    talk: Schema.Attribute.Relation<'oneToOne', 'api::talk.talk'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    value: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 1;
+        },
+        number
+      >;
+  };
+}
+
 export interface ApiSpeakerSpeaker extends Struct.CollectionTypeSchema {
   collectionName: 'speakers';
   info: {
@@ -1283,6 +1323,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::link.link': ApiLinkLink;
       'api::location.location': ApiLocationLocation;
+      'api::rate.rate': ApiRateRate;
       'api::speaker.speaker': ApiSpeakerSpeaker;
       'api::tag.tag': ApiTagTag;
       'api::talk.talk': ApiTalkTalk;
