@@ -33,6 +33,12 @@
     "is_public": {
       "type": "boolean",
       "default": false
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::comment.comment",
+      "mappedBy": "agenda"
     }
   }
 }

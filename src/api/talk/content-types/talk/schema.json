@@ -39,6 +39,12 @@
       "relation": "manyToMany",
       "target": "api::speaker.speaker",
       "inversedBy": "talks"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "talk"
     }
   }
 }

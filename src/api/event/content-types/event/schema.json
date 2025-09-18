@@ -62,6 +62,12 @@
       "relation": "oneToOne",
       "target": "api::agenda.agenda",
       "mappedBy": "event"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "event"
     }
   }
 }

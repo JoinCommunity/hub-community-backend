@@ -380,6 +380,7 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    comment: Schema.Attribute.Relation<'oneToOne', 'api::comment.comment'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -404,6 +405,93 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCommentReplyCommentReply
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'comment_replies';
+  info: {
+    description: '';
+    displayName: 'Comment Reply';
+    pluralName: 'comment-replies';
+    singularName: 'comment-reply';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    comment: Schema.Attribute.Relation<'manyToOne', 'api::comment.comment'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-reply.comment-reply'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Blocks;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_creator: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    users_taggeds: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiCommentComment extends Struct.CollectionTypeSchema {
+  collectionName: 'comments';
+  info: {
+    description: '';
+    displayName: 'Comments';
+    pluralName: 'comments';
+    singularName: 'comment';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    agenda: Schema.Attribute.Relation<'oneToOne', 'api::agenda.agenda'>;
+    comment_replies: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment-reply.comment-reply'
+    >;
+    community: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::community.community'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::comment.comment'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Blocks;
+    publishedAt: Schema.Attribute.DateTime;
+    talk: Schema.Attribute.Relation<'manyToOne', 'api::talk.talk'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_creator: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    users_tagged: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiCommunityCommunity extends Struct.CollectionTypeSchema {
   collectionName: 'communities';
   info: {
@@ -416,6 +504,7 @@ export interface ApiCommunityCommunity extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -462,6 +551,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
   attributes: {
     agenda: Schema.Attribute.Relation<'oneToOne', 'api::agenda.agenda'>;
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     communities: Schema.Attribute.Relation<
       'manyToMany',
       'api::community.community'
@@ -651,6 +741,7 @@ export interface ApiTalkTalk extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1186,6 +1277,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::agenda.agenda': ApiAgendaAgenda;
+      'api::comment-reply.comment-reply': ApiCommentReplyCommentReply;
+      'api::comment.comment': ApiCommentComment;
       'api::community.community': ApiCommunityCommunity;
       'api::event.event': ApiEventEvent;
       'api::link.link': ApiLinkLink;

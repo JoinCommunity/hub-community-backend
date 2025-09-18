@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comment_replies",
+  "info": {
+    "singularName": "comment-reply",
+    "pluralName": "comment-replies",
+    "displayName": "Comment Reply",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "comment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::comment.comment",
+      "inversedBy": "comment_replies"
+    },
+    "user_creator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "users_taggeds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "message": {
+      "type": "blocks"
+    }
+  }
+}

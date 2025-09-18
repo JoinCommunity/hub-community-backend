@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comments",
+  "info": {
+    "singularName": "comment",
+    "pluralName": "comments",
+    "displayName": "Comments",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user_creator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "event": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::event.event",
+      "inversedBy": "comments"
+    },
+    "talk": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::talk.talk",
+      "inversedBy": "comments"
+    },
+    "community": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::community.community",
+      "inversedBy": "comments"
+    },
+    "agenda": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::agenda.agenda",
+      "inversedBy": "comment"
+    },
+    "comment_replies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment-reply.comment-reply",
+      "mappedBy": "comment"
+    },
+    "message": {
+      "type": "blocks"
+    },
+    "users_tagged": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
