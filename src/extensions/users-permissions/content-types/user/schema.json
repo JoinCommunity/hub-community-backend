@@ -76,6 +76,12 @@
       "relation": "oneToOne",
       "target": "api::speaker.speaker",
       "inversedBy": "user"
+    },
+    "agenda": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::agenda.agenda",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

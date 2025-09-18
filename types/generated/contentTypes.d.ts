@@ -369,6 +369,41 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
+  collectionName: 'agendas';
+  info: {
+    displayName: 'Agenda';
+    pluralName: 'agendas';
+    singularName: 'agenda';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    event: Schema.Attribute.Relation<'oneToOne', 'api::event.event'>;
+    is_public: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::agenda.agenda'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String;
+    talks: Schema.Attribute.Relation<'oneToMany', 'api::talk.talk'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiCommunityCommunity extends Struct.CollectionTypeSchema {
   collectionName: 'communities';
   info: {
@@ -426,6 +461,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    agenda: Schema.Attribute.Relation<'oneToOne', 'api::agenda.agenda'>;
     communities: Schema.Attribute.Relation<
       'manyToMany',
       'api::community.community'
@@ -1092,6 +1128,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    agenda: Schema.Attribute.Relation<'oneToMany', 'api::agenda.agenda'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     communities: Schema.Attribute.Relation<
       'manyToMany',
@@ -1148,6 +1185,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::agenda.agenda': ApiAgendaAgenda;
       'api::community.community': ApiCommunityCommunity;
       'api::event.event': ApiEventEvent;
       'api::link.link': ApiLinkLink;
