@@ -1,19 +1,19 @@
-export default () => ({
+export default ({ env }) => ({
   email: {
     config: {
       provider: "nodemailer",
       providerOptions: {
-        host: "smtp.mailgun.org", // Mailgun's SMTP server
-        port: 587,
+        host: env("SMTP_HOST", "smtp.mailgun.org"),
+        port: env.int("SMTP_PORT", 587),
         auth: {
-          user: "eventando@8020digital.com.br",
-          pass: "F1r3wall@0212",
+          user: env("SMTP_USER"),
+          pass: env("SMTP_PASS"),
         },
-        secure: false,
+        secure: env.bool("SMTP_SECURE", false),
       },
       settings: {
-        defaultFrom: "contato@8020digital.com.br",
-        defaultReplyTo: "contato@8020digital.com.br",
+        defaultFrom: env("EMAIL_DEFAULT_FROM", "noreply@example.com"),
+        defaultReplyTo: env("EMAIL_DEFAULT_REPLY_TO", "noreply@example.com"),
       },
     },
   },
