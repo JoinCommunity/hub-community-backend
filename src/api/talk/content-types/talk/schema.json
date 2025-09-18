@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string"
@@ -31,8 +32,8 @@
     },
     "highlight": {
       "type": "boolean",
-      "default": false,
-      "required": false
+      "required": false,
+      "default": false
     },
     "speakers": {
       "type": "relation",
@@ -45,6 +46,9 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "talk"
+    },
+    "subtitle": {
+      "type": "string"
     }
   }
 }

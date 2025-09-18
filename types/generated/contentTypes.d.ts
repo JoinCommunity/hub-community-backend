@@ -797,6 +797,7 @@ export interface ApiTalkTalk extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     room_description: Schema.Attribute.String;
     speakers: Schema.Attribute.Relation<'manyToMany', 'api::speaker.speaker'>;
+    subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
