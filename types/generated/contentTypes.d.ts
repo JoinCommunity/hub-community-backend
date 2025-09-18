@@ -384,7 +384,6 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    comment: Schema.Attribute.Relation<'oneToOne', 'api::comment.comment'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -460,7 +459,6 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    agenda: Schema.Attribute.Relation<'oneToOne', 'api::agenda.agenda'>;
     comment_replies: Schema.Attribute.Relation<
       'oneToMany',
       'api::comment-reply.comment-reply'

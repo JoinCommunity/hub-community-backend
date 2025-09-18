@@ -9,6 +9,7 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "users_permissions_user": {
       "type": "relation",
@@ -33,12 +34,6 @@
     "is_public": {
       "type": "boolean",
       "default": false
-    },
-    "comment": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::comment.comment",
-      "mappedBy": "agenda"
     }
   }
 }

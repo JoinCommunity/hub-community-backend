@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "user_creator": {
       "type": "relation",
@@ -33,12 +34,6 @@
       "relation": "manyToOne",
       "target": "api::community.community",
       "inversedBy": "comments"
-    },
-    "agenda": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::agenda.agenda",
-      "inversedBy": "comment"
     },
     "comment_replies": {
       "type": "relation",
