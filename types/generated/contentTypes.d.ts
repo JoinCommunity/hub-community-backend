@@ -387,7 +387,7 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    event: Schema.Attribute.Relation<'oneToOne', 'api::event.event'>;
+    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
     is_public: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -552,7 +552,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    agenda: Schema.Attribute.Relation<'oneToOne', 'api::agenda.agenda'>;
+    agenda: Schema.Attribute.Relation<'oneToMany', 'api::agenda.agenda'>;
     comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
     communities: Schema.Attribute.Relation<
       'manyToMany',
