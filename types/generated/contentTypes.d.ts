@@ -570,6 +570,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     location: Schema.Attribute.Relation<'manyToOne', 'api::location.location'>;
     publishedAt: Schema.Attribute.DateTime;
     start_date: Schema.Attribute.DateTime;
+    subscription_link: Schema.Attribute.String;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     talks: Schema.Attribute.Relation<'oneToMany', 'api::talk.talk'>;
     title: Schema.Attribute.String;
